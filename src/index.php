@@ -18,3 +18,13 @@ for($i = 3; $i < count($casti_url); $i++)
 
 // z URL jsme ziskali pozadovany controller, akci a jeji pripadne parametry
 
+if($controller == null)
+    $controller = "stranky";
+else if($akce == null)
+    $akce = "default";
+
+// nastavili jsme defaultni chovani pri neuplne URL
+
+require_once "views/layout.php";
+
+// zbytek se resi na strance s layoutem
