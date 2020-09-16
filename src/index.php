@@ -23,9 +23,15 @@ if(count($casti_url) > 3)
 // z URL jsme ziskali pozadovany controller, akci a jeji pripadne parametry
 
 if($controller == null)
+{
     $controller = "stranky";
-else if($akce == null)
     $akce = "default";
+}
+else if($akce == null)
+{
+    $controller = "stranky";
+    $akce = "error";
+}
 
 // nastavili jsme defaultni chovani pri neuplne URL
 

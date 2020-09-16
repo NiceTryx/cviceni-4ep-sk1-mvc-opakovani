@@ -37,7 +37,6 @@ if(array_key_exists($controller, $controllery_a_akce) &&
    in_array($akce, $controllery_a_akce[$controller]))
 {
     spustit($controller, $akce);
-
 }
 else
 {
