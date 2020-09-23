@@ -81,11 +81,15 @@ class Uzivatele
 
             if(Uzivatel::existuje($jmeno, $heslo))
             {
+                global $zakladni_url;
+
                 session_destroy();
+                unset($_SESSION["prihlaseny_uzivatel"]);
+
                 session_start();
                 $_SESSION["prihlaseny_uzivatel"] = $jmeno;
 
-                spustit("stranky", "profil");
+                header("location:".$zakladni_url."index.php/stranky/profil/");
             }
             else
                 require_once "views/uzivatele/prihlasit.php";
@@ -99,9 +103,11 @@ class Uzivatele
 
     public function odhlasit()
     {
+        global $zakladni_url;
+
         session_destroy();
         session_start();
 
-        spustit("stranky", "default"); // TO DO
+        header("location:".$zakladni_url."index.php/stranky/default/");
     }
 }
