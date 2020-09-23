@@ -10,7 +10,7 @@ class Uzivatel
     public function __construct($jmeno, $heslo)
     {
         $this->jmeno = $jmeno;
-        $this->heslo = $heslo;
+        $this->heslo = password_hash($heslo, PASSWORD_DEFAULT);
     }
 
     public function zaregistrovat()
@@ -21,5 +21,22 @@ class Uzivatel
         mysqli_query($spojeni, $dotaz);
 
         return (mysqli_affected_rows($spojeni) == 1);
+    }
+
+    static public function existuje($jmeno, $heslo)
+    {
+        $spojeni = DB::pripojit();
+
+        $dotaz = "SELECT * FROM 4ep_sk1_mvc_uzivatele WHERE jmeno='$jmeno'";
+        $vysledek = mysqli_query($spojeni, $dotaz);
+
+        if(mysqli_num_rows($vysledek) == 1)
+        {
+            $heslo_z_db = mysqli_fetch_assoc($vysledek)["heslo"];
+
+            return (password_verify($heslo, $heslo_z_db));
+        }
+        else
+            return false;
     }
 }

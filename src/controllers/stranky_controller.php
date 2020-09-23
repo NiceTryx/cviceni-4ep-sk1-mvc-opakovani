@@ -11,4 +11,9 @@ class Stranky
     {
         require_once "views/stranky/error.php";
     }
+
+    public function profil()
+    {
+        require_once "views/stranky/profil.php";
+    }
 }

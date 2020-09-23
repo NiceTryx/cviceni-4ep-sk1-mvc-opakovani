@@ -2,6 +2,16 @@
 
 class Uzivatele
 {
+    private function prihlasovaci_udaje_jsou_kompletni()
+    {
+        if(!isset($_POST["jmeno"]))
+            return false;
+        if(!isset($_POST["heslo"]))
+            return false; 
+
+        return true;
+    }
+
     private function registracni_udaje_jsou_kompletni()
     {
         if(!isset($_POST["jmeno"]))
@@ -45,7 +55,6 @@ class Uzivatele
 
             if($this->registracni_udaje_jsou_v_poradku($jmeno, $heslo, $heslo_znovu))
             {
-                $heslo = password_hash($heslo, PASSWORD_DEFAULT);
                 $uzivatel = new Uzivatel($jmeno, $heslo);
                 
                 if($uzivatel->zaregistrovat())
@@ -65,11 +74,34 @@ class Uzivatele
 
     public function prihlasit()
     {
-        require_once "views/uzivatele/prihlasit.php";
+        if($this->prihlasovaci_udaje_jsou_kompletni())
+        {
+            $jmeno = trim($_POST["jmeno"]);
+            $heslo = trim($_POST["heslo"]);
+
+            if(Uzivatel::existuje($jmeno, $heslo))
+            {
+                session_destroy();
+                session_start();
+                $_SESSION["prihlaseny_uzivatel"] = $jmeno;
+
+                spustit("stranky", "profil");
+            }
+            else
+                require_once "views/uzivatele/prihlasit.php";
+        }
+        else
+        {
+            // zobrazeni formulare k vyplneni
+            require_once "views/uzivatele/prihlasit.php";
+        }
     }
 
     public function odhlasit()
     {
+        session_destroy();
+        session_start();
 
+        spustit("stranky", "default"); // TO DO
     }
 }

@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -9,6 +13,14 @@
     <header>
         <h1>MVC PHP</h1>
         <a href="<?php echo $zakladni_url; ?>index.php/stranky/default/">Domů</a>
+        <?php
+            if(isset($_SESSION["prihlaseny_uzivatel"]))
+            {
+        ?>
+        <a href="<?php echo $zakladni_url; ?>index.php/stranky/profil/">Profil</a>
+        <?php
+            }
+        ?>
         <a href="<?php echo $zakladni_url; ?>index.php/uzivatele/registrovat/">Registrace</a>
         <a href="<?php echo $zakladni_url; ?>index.php/uzivatele/prihlasit/">Přihlášení</a>
     </header>

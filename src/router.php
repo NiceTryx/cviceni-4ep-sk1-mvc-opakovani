@@ -24,6 +24,7 @@ $controllery_a_akce = array(
     "stranky" => array(
         "default",
         "error",
+        "profil",
     ),
     "uzivatele" => array(
         "registrovat",
