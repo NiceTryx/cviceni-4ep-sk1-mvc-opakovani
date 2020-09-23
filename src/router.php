@@ -10,9 +10,8 @@ function spustit($pozadovany_controller, $pozadovana_akce)
             $aktivni_controller = new Stranky();
             break;
         case "uzivatele":
-            $aktivni_controller = new Uzivatele();
             require_once "models/Uzivatel.php";
-            $aktivni_model = new Uzivatel();
+            $aktivni_controller = new Uzivatele();
             break;
     }
 
@@ -33,6 +32,7 @@ $controllery_a_akce = array(
     ),
 );
 
+// kontrola pripustnosti zadaneho controlleru a akce
 if(array_key_exists($controller, $controllery_a_akce) &&
    in_array($akce, $controllery_a_akce[$controller]))
 {

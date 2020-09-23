@@ -24,20 +24,37 @@ class Uzivatele
 
     private function registracni_udaje_jsou_v_poradku($jmeno, $heslo, $heslo_znovu)
     {
-        // TO DO
+        if(strlen($jmeno) < 1)
+            return false;
+        if(strlen($heslo) < 1)
+            return false;
+        if($heslo_znovu != $heslo)
+            return false;
+
+        return true;
     }
 
     public function registrovat()
     {
-        if(registracni_udaje_jsou_kompletni())
+        if($this->registracni_udaje_jsou_kompletni())
         {
             // zpracovani dat z formulare
             $jmeno = trim($_POST["jmeno"]);
             $heslo = trim($_POST["heslo"]);
             $heslo_znovu = trim($_POST["heslo_znovu"]);
 
-            if(registracni_udaje_jsou_v_poradku($jmeno, $heslo, $heslo_znovu))
+            if($this->registracni_udaje_jsou_v_poradku($jmeno, $heslo, $heslo_znovu))
+            {
+                $heslo = password_hash($heslo, PASSWORD_DEFAULT);
                 $uzivatel = new Uzivatel($jmeno, $heslo);
+                
+                if($uzivatel->zaregistrovat())
+                    return spustit("uzivatele", "prihlasit");
+                else
+                    return spustit("stranky", "error");
+            }
+            else
+                require_once "views/uzivatele/registrovat.php";
         }
         else
         {
@@ -48,7 +65,7 @@ class Uzivatele
 
     public function prihlasit()
     {
-
+        require_once "views/uzivatele/prihlasit.php";
     }
 
     public function odhlasit()

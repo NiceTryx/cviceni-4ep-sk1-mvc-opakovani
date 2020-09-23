@@ -8,8 +8,8 @@ class DB
 
     static public function pripojit()
     {
-        if(self::$spojeni != null)
-            self::$spojeni = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+        if(self::$spojeni == null)
+            self::$spojeni = mysqli_connect(dbhost, dbuser, dbpass, dbname);
 
         return self::$spojeni;
     }
