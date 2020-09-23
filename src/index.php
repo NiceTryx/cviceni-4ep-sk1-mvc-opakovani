@@ -4,9 +4,23 @@ require_once "db.php";
 
 $url = $_SERVER["REQUEST_URI"];
 
-$zacatek = strpos($url, "index.php") + strlen("index.php");
-$zajimava_cast = substr($url, $zacatek);
-$casti_url = explode("/", $zajimava_cast);
+$zacatek_index_php = strpos($url, "index.php");
+$zacatek_zajimave_casti = $zacatek_index_php + strlen("index.php");
+
+if($zacatek_index_php)
+{
+    $zakladni_url = substr($url, 0, $zacatek_index_php);
+
+    $zajimava_cast = substr($url, $zacatek_zajimave_casti);
+    $casti_url = explode("/", $zajimava_cast);
+}
+else
+{
+    $zakladni_url = $url;
+
+    $zajimava_cast = "";
+    $casti_url = [];
+}
 
 $controller = null;
 $akce = null;
