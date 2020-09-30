@@ -20,9 +20,14 @@
         <a href="<?php echo $zakladni_url; ?>index.php/stranky/profil/">Profil</a>
         <?php
             }
+            else
+            {
         ?>
         <a href="<?php echo $zakladni_url; ?>index.php/uzivatele/registrovat/">Registrace</a>
         <a href="<?php echo $zakladni_url; ?>index.php/uzivatele/prihlasit/">Přihlášení</a>
+        <?php
+            }
+        ?>
     </header>
     <main>
         <?php require_once "router.php"; ?>
