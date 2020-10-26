@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost:3306
--- Vytvořeno: Pát 25. zář 2020, 09:03
+-- Vytvořeno: Pon 26. říj 2020, 15:21
 -- Verze serveru: 10.1.41-MariaDB-0+deb9u1
 -- Verze PHP: 7.3.10-1+0~20191008.45+debian9~1.gbp365209
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databáze: `ucit_senkyr`
+-- Databáze: `7ep_jebava`
 --
 
 -- --------------------------------------------------------
@@ -34,13 +34,6 @@ CREATE TABLE `4ep_sk1_mvc_uzivatele` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 --
--- Vypisuji data pro tabulku `4ep_sk1_mvc_uzivatele`
---
-
-INSERT INTO `4ep_sk1_mvc_uzivatele` (`id`, `jmeno`, `heslo`, `cas_registrace`) VALUES
-(1, 'senkyr', '$2y$10$ffjIaYb2Mgeyr.fCewxq1e3nRoULYj53v/nSkUq9SHlqNy9OyKrG6', '2020-09-23 09:21:23');
-
---
 -- Klíče pro exportované tabulky
 --
 
@@ -48,7 +41,7 @@ INSERT INTO `4ep_sk1_mvc_uzivatele` (`id`, `jmeno`, `heslo`, `cas_registrace`) V
 -- Klíče pro tabulku `4ep_sk1_mvc_uzivatele`
 --
 ALTER TABLE `4ep_sk1_mvc_uzivatele`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY `id` (`id`);
   ADD UNIQUE KEY `jmeno` (`jmeno`);
 
 --
@@ -60,6 +53,7 @@ ALTER TABLE `4ep_sk1_mvc_uzivatele`
 --
 ALTER TABLE `4ep_sk1_mvc_uzivatele`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
